@@ -1,0 +1,5 @@
+Working with a Local Database
+https://developer.xamarin.com/guides/xamarin-forms/working-with/databases/
+
+Data Access: Using SQLite.NET
+https://developer.xamarin.com/guides/cross-platform/application_fundamentals/data/
