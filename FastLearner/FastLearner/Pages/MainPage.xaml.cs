@@ -24,6 +24,7 @@ namespace FastLearner
             vm = new BrowseViewModel();
             this.BindingContext = vm;
             vm.LessonSeleted += Vm_LessonSeleted;
+            imgTest.Source = ImageSource.FromFile("C:\\Users\\Andy\\Documents\\Labs\\RosettaStone\\1_1_1\\img\\1_1.jpg");
         }
 
         private async void Vm_LessonSeleted(object sender, Models.StringEventArgs e)
@@ -31,7 +32,7 @@ namespace FastLearner
             await Navigation.PushModalAsync(new ListPage(e.Value));
         }
 
-        private async void BtnTest_Clicked(object sender, EventArgs e)
+        private void BtnTest_Clicked(object sender, EventArgs e)
         {
             //db.SaveItem(new Card() { Level = 1, ReviewTime = DateTime.Now });
 

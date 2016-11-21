@@ -25,7 +25,7 @@ namespace FastLearner.Models
             Text = Path.Combine(path, "txt", nameBase+".txt");
             Audio = Path.Combine(path, "audio", nameBase+".mp3");
 
-            ImageSrc = ImageSource.FromFile(Image);
+            //ImageSrc = ImageSource.FromFile(Image);
         }
     }
 }

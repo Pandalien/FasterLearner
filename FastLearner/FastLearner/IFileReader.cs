@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Xamarin.Forms;
 
 namespace FastLearner
 {
@@ -16,5 +17,7 @@ namespace FastLearner
 
         //get a list of files in specified path
         string[] GetLessonImageFiles(string path);
+
+        ImageSource GetImageSource(string path);
     }
 }

@@ -61,5 +61,15 @@ namespace FastLearner.UWP
         {
             return Directory.GetFiles(path, "*.jpg");
         }
+
+        public ImageSource GetImageSource(string path)
+        {
+            if (File.Exists(path))
+            {
+                return ImageSource.FromFile(path);
+            }
+
+            return null;
+        }
     }
 }

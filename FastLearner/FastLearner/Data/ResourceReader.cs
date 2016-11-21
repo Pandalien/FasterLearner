@@ -30,19 +30,23 @@ namespace FastLearner.Data
                 resFolder = await fileReader.GetResourceDirectory();
             }
 
-            string[] folders = DependencyService.Get<IFileReader>().GetLessonDirectories(resFolder);
+            string[] folders = fileReader.GetLessonDirectories(resFolder);
             return folders;
         }
 
         public void getResource(string lesson, ObservableCollection<Card> cards)
         {
-            string imgPath = Path.Combine(lesson, "img");
-            string[] images = DependencyService.Get<IFileReader>().GetLessonImageFiles(imgPath);
+            Task task = new Task(() => {
+                string imgPath = Path.Combine(lesson, "img");
+                string[] images = fileReader.GetLessonImageFiles(imgPath);
 
-            foreach (var item in images)
-            {
-                cards.Add(new Card(lesson, Path.GetFileNameWithoutExtension(item)));
-            }
+                foreach (var item in images)
+                {
+                    Card card = new Card(lesson, Path.GetFileNameWithoutExtension(item));
+                    cards.Add(card);
+                }
+            });
+            task.Start();
         }
     }
 }
