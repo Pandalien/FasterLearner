@@ -24,12 +24,15 @@ namespace FastLearner
             vm = new BrowseViewModel();
             this.BindingContext = vm;
             vm.LessonSeleted += Vm_LessonSeleted;
-            imgTest.Source = ImageSource.FromFile("C:\\Users\\Andy\\Documents\\Labs\\RosettaStone\\1_1_1\\img\\1_1.jpg");
+            var imgSrc = ImageSource.FromFile("C:\\Users\\Administrator\\Documents\\Labs\\RosettaStoneUtils\\!NewRecorded\\1_1_1\\img\\1_1.jpg");
+            ImgTest.Source = imgSrc;
         }
 
-        private async void Vm_LessonSeleted(object sender, Models.StringEventArgs e)
+        private void Vm_LessonSeleted(object sender, Models.StringEventArgs e)
         {
-            await Navigation.PushModalAsync(new ListPage(e.Value));
+            var imgSrc = ImageSource.FromFile("C:\\Users\\Administrator\\AppData\\Local\\Packages\\d9713359-84b2-41dc-a3a7-15b37902ab8f_75cr2b68sm664\\LocalState\\1_1.jpg");
+            ImgTest.Source = imgSrc;
+            //await Navigation.PushModalAsync(new ListPage(e.Value));
         }
 
         private void BtnTest_Clicked(object sender, EventArgs e)

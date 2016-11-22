@@ -1,7 +1,10 @@
 ﻿{
   "dependencies": {
+    "Acr.UserDialogs": "6.3.1",
     "Microsoft.NETCore.UniversalWindowsPlatform": "5.2.2",
     "sqlite-net-pcl": "1.2.0",
+    "Xam.Plugin.Connectivity": "2.2.12",
+    "Xam.Plugin.Media": "2.6.1",
     "Xamarin.Forms": "2.3.2.127"
   },
   "frameworks": {

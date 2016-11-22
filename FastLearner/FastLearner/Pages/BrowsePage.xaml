@@ -9,7 +9,7 @@
       <RowDefinition Height="Auto"/>
       <RowDefinition Height="Auto"/>
     </Grid.RowDefinitions>
-    <Image x:Name="imgTest" Aspect="AspectFit"/>
+    <Image x:Name="ImgTest" Aspect="AspectFit"/>
     <Button Text="Refresh" Command="{Binding RefreshCommand}" Grid.Row="1"/>
     <ListView ItemsSource="{Binding CardGroups}" SelectedItem="{Binding SelectedItem}" Header="Tour Guides Header" Footer="Tour Guids Footer" Grid.Row="2" x:Name="GuidesListView" >
       <ListView.ItemTemplate>

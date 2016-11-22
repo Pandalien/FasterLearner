@@ -19,12 +19,7 @@ namespace FastLearner.Pages
 
             vm = new LessonViewModel(value);
             BindingContext = vm;
-            btnGoBack.Clicked += BtnGoBack_Clicked;
-        }
-
-        private async void BtnGoBack_Clicked(object sender, EventArgs e)
-        {
-            await Navigation.PopModalAsync();
+            btnGoBack.Clicked += async (s,e) => { await Navigation.PopModalAsync(); };
         }
     }
 }

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using FastLearner.Pages;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -13,7 +14,7 @@ namespace FastLearner
         {
             InitializeComponent();
 
-            MainPage = new FastLearner.MainPage();
+            MainPage = new MainTicketPage();
         }
 
         protected override void OnStart()
