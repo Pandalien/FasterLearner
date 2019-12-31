@@ -12,6 +12,9 @@ namespace FastLearner
         //get the path for all lessons
         Task<string> GetResourceDirectory();
 
+        Task<string> PickFolder();
+        Task<string> PickFile();
+
         //get a list of lessons
         string[] GetLessonDirectories(string path);
 

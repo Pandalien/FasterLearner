@@ -1,7 +1,7 @@
 using System;
 using Xamarin.Forms;
-using Todo.Droid;
 using System.IO;
+using FastLearner.Droid;
 
 [assembly: Dependency(typeof(SQLite_Android))]
 

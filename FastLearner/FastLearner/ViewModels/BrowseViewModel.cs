@@ -15,11 +15,6 @@ namespace FastLearner.ViewModels
 {
     class BrowseViewModel : INotifyPropertyChanged
     {
-        #region ICommands
-        public ICommand RefreshCommand { get; set; }
-
-        #endregion
-
         #region Properties
         public ObservableCollection<CardGroup> CardGroups { get; protected set; }
         public string Title { get; set; }
@@ -37,14 +32,9 @@ namespace FastLearner.ViewModels
                 }
             }
         }
-
         #endregion
 
-        public event PropertyChangedEventHandler PropertyChanged;
-        public event StringEventHandler LessonSeleted;
-
         #region Public methods
-
         public BrowseViewModel()
         {
             CardGroups = new ObservableCollection<CardGroup>();
@@ -58,7 +48,7 @@ namespace FastLearner.ViewModels
             ResourceReader rr = new ResourceReader();
             CardGroups.Clear();
 
-            string[] lessons = await rr.getLessons();
+            var lessons = await rr.getLessons();
 
             foreach (var item in lessons)
             {
@@ -72,6 +62,13 @@ namespace FastLearner.ViewModels
         }
         #endregion
 
+        #region ICommands
+        public ICommand RefreshCommand { get; set; }
+
+        #endregion
+
+        public event PropertyChangedEventHandler PropertyChanged;
+        public event EventHandler<string> LessonSeleted;
 
         #region Private methods
         protected virtual void OnRaiseLessonSelected(string value)
@@ -79,8 +76,7 @@ namespace FastLearner.ViewModels
             var handler = LessonSeleted;
             if (handler != null)
             {
-                var e = new StringEventArgs(value);
-                handler(this, e);
+                handler(this, value);
             }
         }
 

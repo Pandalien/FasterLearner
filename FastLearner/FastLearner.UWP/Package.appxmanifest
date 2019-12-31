@@ -21,12 +21,14 @@
         <uap:SplashScreen Image="Assets\SplashScreen.png" />
       </uap:VisualElements>
       <Extensions>
-        <uap:Extension Category="windows.fileSavePicker">
-          <uap:FileSavePicker>
+        <uap:Extension Category="windows.fileTypeAssociation">
+          <uap:FileTypeAssociation Name="test">
+            <uap:DisplayName>FastLearner</uap:DisplayName>
             <uap:SupportedFileTypes>
-              <uap:SupportsAnyFileType />
+              <uap:FileType ContentType="image/jpeg">.jpg</uap:FileType>
+              <uap:FileType ContentType="text/plain">.txt</uap:FileType>
             </uap:SupportedFileTypes>
-          </uap:FileSavePicker>
+          </uap:FileTypeAssociation>
         </uap:Extension>
         <uap:Extension Category="windows.fileOpenPicker">
           <uap:FileOpenPicker>
@@ -35,10 +37,18 @@
             </uap:SupportedFileTypes>
           </uap:FileOpenPicker>
         </uap:Extension>
+        <uap:Extension Category="windows.fileSavePicker">
+          <uap:FileSavePicker>
+            <uap:SupportedFileTypes>
+              <uap:SupportsAnyFileType />
+            </uap:SupportedFileTypes>
+          </uap:FileSavePicker>
+        </uap:Extension>
       </Extensions>
     </Application>
   </Applications>
   <Capabilities>
     <Capability Name="internetClient" />
+    <uap:Capability Name="removableStorage" />
   </Capabilities>
 </Package>

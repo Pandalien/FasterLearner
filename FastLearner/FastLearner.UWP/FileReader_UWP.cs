@@ -14,6 +14,42 @@ namespace FastLearner.UWP
     {
         private const string dirToken = "PickedFolderToken";
 
+        public async Task<string> PickFolder()
+        {
+            //foler picker
+            var folderPicker = new Windows.Storage.Pickers.FolderPicker();
+            folderPicker.SuggestedStartLocation = Windows.Storage.Pickers.PickerLocationId.Desktop;
+            folderPicker.FileTypeFilter.Add("*");
+
+            Windows.Storage.StorageFolder folder = await folderPicker.PickSingleFolderAsync();
+            if (folder != null)
+            {
+                // Application now has read/write access to all contents in the picked folder
+                // (including other sub-folder contents)
+                Windows.Storage.AccessCache.StorageApplicationPermissions.
+                FutureAccessList.AddOrReplace(dirToken, folder);
+                return folder.Path;
+            }
+            else
+            {
+                return null;
+            }
+        }
+        public async Task<string> PickFile()
+        {
+            var filePick = new Windows.Storage.Pickers.FileOpenPicker();
+            filePick.SuggestedStartLocation = Windows.Storage.Pickers.PickerLocationId.PicturesLibrary;
+            filePick.FileTypeFilter.Add("*");
+
+            var file = await filePick.PickSingleFileAsync();
+            if (file != null)
+            {
+                return file.Path;
+            }
+
+            return null;
+        }
+
         public async Task<string> GetResourceDirectory()
         {
             //use last folder is exist
@@ -33,23 +69,7 @@ namespace FastLearner.UWP
             }
 
             //foler picker
-            var folderPicker = new Windows.Storage.Pickers.FolderPicker();
-            folderPicker.SuggestedStartLocation = Windows.Storage.Pickers.PickerLocationId.Desktop;
-            folderPicker.FileTypeFilter.Add("*");
-
-            Windows.Storage.StorageFolder folder = await folderPicker.PickSingleFolderAsync();
-            if (folder != null)
-            {
-                // Application now has read/write access to all contents in the picked folder
-                // (including other sub-folder contents)
-                Windows.Storage.AccessCache.StorageApplicationPermissions.
-                FutureAccessList.AddOrReplace(dirToken, folder);
-                return folder.Path;
-            }
-            else
-            {
-                return null;
-            }
+            return await PickFolder();
         }
 
         public string[] GetLessonDirectories(string path)

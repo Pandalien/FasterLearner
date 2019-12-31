@@ -1,4 +1,5 @@
 ﻿using FastLearner.Models;
+using PCLStorage;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -23,30 +24,68 @@ namespace FastLearner.Data
             //resFolder = fileReader.GetResourceDirectory();
         }
 
-        public async Task<string[]> getLessons()
+        //public async Task<string[]> getLessons()
+        //{
+        //    if (string.IsNullOrEmpty(resFolder))
+        //    {
+        //        resFolder = await fileReader.GetResourceDirectory();
+        //    }
+
+        //    string[] folders = fileReader.GetLessonDirectories(resFolder);
+        //    return folders;
+        //}
+
+        public async Task<List<string>> getLessons()
         {
             if (string.IsNullOrEmpty(resFolder))
             {
                 resFolder = await fileReader.GetResourceDirectory();
             }
 
-            string[] folders = fileReader.GetLessonDirectories(resFolder);
-            return folders;
+            var folder = await FileSystem.Current.GetFolderFromPathAsync(resFolder);
+            if (folder != null)
+            {
+                var list = await folder.GetFoldersAsync();
+                return list.Select(s => s.Path).ToList();
+
+            }
+            //string[] folders = fileReader.GetLessonDirectories(resFolder);
+            return null;
+        }
+
+        public async Task PCLStorageSample()
+        {
+            IFolder rootFolder = FileSystem.Current.LocalStorage;
+            IFolder folder = await rootFolder.CreateFolderAsync("MySubFolder",
+                CreationCollisionOption.OpenIfExists);
+            IFile file = await folder.CreateFileAsync("answer.txt",
+                CreationCollisionOption.ReplaceExisting);
+            await file.WriteAllTextAsync("42");
         }
 
         public void getResource(string lesson, ObservableCollection<Card> cards)
         {
-            Task task = new Task(() => {
-                string imgPath = Path.Combine(lesson, "img");
-                string[] images = fileReader.GetLessonImageFiles(imgPath);
+            //Task task = new Task(() => {
+            //    string imgPath = Path.Combine(lesson, "img");
+            //    string[] images = fileReader.GetLessonImageFiles(imgPath);
 
-                foreach (var item in images)
-                {
-                    Card card = new Card(lesson, Path.GetFileNameWithoutExtension(item));
-                    cards.Add(card);
-                }
-            });
-            task.Start();
+            //    foreach (var item in images)
+            //    {
+            //        Card card = new Card(lesson, Path.GetFileNameWithoutExtension(item));
+            //        cards.Add(card);
+            //    }
+            //});
+
+            //await task.ConfigureAwait(true);
+
+            string imgPath = Path.Combine(lesson, "img");
+            string[] images = fileReader.GetLessonImageFiles(imgPath);
+
+            foreach (var item in images)
+            {
+                Card card = new Card(lesson, Path.GetFileNameWithoutExtension(item));
+                cards.Add(card);
+            }
         }
     }
 }

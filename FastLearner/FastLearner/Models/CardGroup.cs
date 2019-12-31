@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace FastLearner.Models
 {
+    //Core, Reading, etc.
     class CardGroup
     {
         public string Name { get; set; }

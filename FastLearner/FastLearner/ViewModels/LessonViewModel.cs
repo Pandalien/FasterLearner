@@ -34,6 +34,11 @@ namespace FastLearner.ViewModels
             Cards.Clear();
             rr.getResource(selectedPath, Cards);
         }
+
+        public void Play()
+        {
+
+        }
         #endregion
 
         #region Private methods
